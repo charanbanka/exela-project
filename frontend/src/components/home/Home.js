@@ -64,7 +64,6 @@ const Home = () => {
             nextClassName='page-item'
             nextLinkClassName='page-link'
             activeClassName='active'
-            forcePage={this.state.selected}
         /> 
     </div>
   )
