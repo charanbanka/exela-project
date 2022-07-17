@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-import { postBill, updateBill } from '../../actions/billAction'
+import { getBill, postBill, updateBill } from '../../actions/billAction'
 import Input from './Input'
 
 const BillForm = () => {
     const initialValues = {billDate:"",paidDate:"",units:"",amount:""}
     const [billDetails,setBillDetails] = useState(initialValues)
     const {id} = useParams()
-    const bill = useSelector((state)=>state.bill.bill)
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    useEffect(()=>{
+        dispatch(getBill(id))
+    },[id])
+    const bill = useSelector((state)=>state.bill.bill)
     useEffect(()=>{
         var date_ = new Date(bill.billDate)
         var day = date_.getDate()

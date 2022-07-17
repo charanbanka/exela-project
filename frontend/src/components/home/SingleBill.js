@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import {MdEdit,MdDelete} from 'react-icons/md'
 import { deleteBill, getBill } from '../../actions/billAction'
 import Spinner from 'react-bootstrap/Spinner';
@@ -9,6 +9,10 @@ import './Style.css'
 const SingleBill = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const {id} = useParams()
+    useEffect(()=>{
+        dispatch(getBill(id))
+    },[id])
     const {bill,loading} = useSelector((state)=>state.bill)
     const [overlay,setOverlay] = useState(false)
     const handleDelete = (e)=>{

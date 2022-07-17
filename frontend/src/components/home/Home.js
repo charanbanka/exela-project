@@ -13,12 +13,11 @@ const Home = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const query = useQuery();
-    const {loading, bills,noOfPages} = useSelector((state)=>state.bill)
     const page = query.get('page') || 1;
     useEffect(()=>{
-        dispatch(getBills(page))
-    },[dispatch,page])
-
+       if(page) dispatch(getBills(page))
+    },[page])
+    const {loading, bills,noOfPages} = useSelector((state)=>state.bill)
     const handlePageClick = (e) =>{
         navigate(`/bill?page=${e.selected+1}`)
     }

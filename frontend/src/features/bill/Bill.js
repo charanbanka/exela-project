@@ -28,7 +28,7 @@ const billSlice = createSlice({
         },
         updateBillReducer: (state,{payload})=>{
             state.bills = state.bills.map((bill)=>bill._id ===payload._id ? payload:bill)
-            
+            state.bill =payload
         },
         deleteBillReducer: (state,{payload})=>{
             state.bills = state.bills.filter((bill)=>bill._id !== payload._id)
